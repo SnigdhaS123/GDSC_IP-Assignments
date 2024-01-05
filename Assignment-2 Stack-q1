@@ -1,0 +1,21 @@
+class Solution {
+public:
+    bool isValid(string s) { 
+        stk<char> st; //empty stack to store opening brackets
+        for (char c : s){
+            if (c == '(' || '[' || '{'){
+                st.push(c);
+            }
+            else { //if the character is a closing bracket
+                if ( st.empty() || 
+                   (c == ')' && st.top() != '(')||
+                   (c == '}' && st.top() != '{')||
+                   (c == ']' && st.top() != '[') {
+                       return false;
+                }
+                st.pop();
+            }
+        }
+        return st.empty();
+    }
+};
